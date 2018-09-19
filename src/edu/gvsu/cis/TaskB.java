@@ -3,18 +3,18 @@ package edu.gvsu.cis;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class TaskA implements Runnable {
+public class TaskB implements Runnable {
 
 	private Counter cnt;
 	
-	public TaskA(Counter cnt) {
+	public TaskB(Counter cnt) {
 		this.cnt = cnt;
 	}
 
 	@Override
 	public void run() {
 		for(int i=0; i<1000000; i++) {
-			cnt.increment();
+			cnt.safeIncrement();
 		}
 
 	}
@@ -28,7 +28,7 @@ public class TaskA implements Runnable {
 	public static void addToCsv(int numberOfThreads, int counterValue, long executionTime) throws IOException {
 		int avgCountPerThread = counterValue/numberOfThreads;
 		long avgTime = executionTime/numberOfThreads;
-		FileWriter fileWriter = new FileWriter("/Users/rikeshpuri/Desktop/javafiles/workspace/LearningThreading/outputUnSync.csv", true);
+		FileWriter fileWriter = new FileWriter("/Users/rikeshpuri/Desktop/javafiles/workspace/LearningThreading/outputSync.csv", true);
 		fileWriter.append(numberOfThreads + ",");
 		fileWriter.append(counterValue + ",");
 		fileWriter.append(executionTime + ",");
@@ -50,7 +50,7 @@ public class TaskA implements Runnable {
 			Counter cnt = new Counter();
 			Thread[] threads = new Thread[numberOfThreads];
 			for (int i = 0; i < threads.length; i++) {
-				threads[i] = new Thread(new TaskA(cnt));
+				threads[i] = new Thread(new TaskB(cnt));
 				threads[i].start();
 			}
 			for (Thread thread : threads) {
