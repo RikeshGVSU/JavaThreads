@@ -1,4 +1,4 @@
-NumberOfThreads,FinalCounter,TotalTime,AverCountPerThread,AvgTimePer1000000
+NumberOfThreads,FinalCounter,TotalTime,AvgCountPerThread,AvgTimePer1000000
 2,1000287,10690553,500143,5345276
 2,979770,5278095,489885,2639047
 2,2000000,1127363,1000000,563681
